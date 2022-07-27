@@ -21,9 +21,7 @@ pipeline {
         }
 
           stage('logging to ECR') {
-            input {
-                message "Do you really wanna approve ?"
-            }
+            
             steps {
             script {
                 try {
