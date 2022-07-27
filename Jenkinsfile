@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    triggers {
-        cron('* * * * *')
-    }
+#    triggers {
+#        cron('* * * * *')
+#    }
     environment {
         aws_account_id="06274638961"
         aws_default_region="us-east-1"
