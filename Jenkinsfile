@@ -63,16 +63,20 @@ pipeline {
             }
         }
 
-        // stage ('Deploying on k8s cluster') {
-        //     steps {
-        //         input "want to deploy on k8s ?"
-        //         sh 'kubectl apply -f deployment.yml'
-        //     }
-        // }
+        stage ('Deploying on k8s cluster') {
+            steps {
+                input "want to deploy on k8s ?"
+                sh(returnStdout: true, script: '''#!/bin/bash
+                      config_info=$(k get configmap | grep deploy_map | awk '{print $1}')
+                      if [ !config_info ];then
+                      kubectl create configmap deploy_map --from-env-file=env.properties
+                      fi
+
+                      kubectl apply -f deployment.yml
+
+                    '''.stripIndent())
+                } 
+            }
+        }
     }
 }
-
-
-
-
-
