@@ -65,7 +65,7 @@ pipeline {
         }
         stage ('Deploy on k8s cluster') {
             steps {
-                input "want to deploy on k8s ?"
+//          input "want to deploy on k8s ?"
                 echo "Deployment completed !"
             }
         }
