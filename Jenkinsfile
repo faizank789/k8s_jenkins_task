@@ -20,8 +20,8 @@ pipeline {
             }
         }
 
-          stage('logging to ECR') {
-
+        stage('logging to ECR') {
+            
             steps {
             script {
                 try {
