@@ -63,12 +63,12 @@ pipeline {
             }
         }
 
-        stage ('Deploying on k8s cluster') {
-            steps {
-//          input "want to deploy on k8s ?"
-                echo "Deployment completed !"
-            }
-        }
+        // stage ('Deploying on k8s cluster') {
+        //     steps {
+        //         input "want to deploy on k8s ?"
+        //         sh 'kubectl apply -f deployment.yml'
+        //     }
+        // }
     }
 }
 
