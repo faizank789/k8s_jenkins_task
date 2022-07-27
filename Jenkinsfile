@@ -66,6 +66,7 @@ pipeline {
         stage ('Deploying on k8s cluster') {
             steps {
                 input "want to deploy on k8s ?"
+                try (
                 sh(returnStdout: true, script: '''#!/bin/bash
                       config_info=$(k get configmap | grep deploy_map | awk '{print $1}')
                       if [ !config_info ];then
@@ -75,6 +76,11 @@ pipeline {
                       kubectl apply -f deployment.yml
 
                     '''.stripIndent())
+                )
+                catch (Exception errorlogs) {
+                    println (errorlogs)
+                    echo "Something Wrong on deployment please check Jenkinsfile Info !"
+                }
                 } 
             }
         }
