@@ -16,8 +16,12 @@ pipeline {
         stage('logging to ECR') {
             steps {
             script {
+                try {
              sh "aws ecr --region us-east-1 | docker login -u AWS -p ${pass} ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
-                
+                }
+                catch (Exception errorlogs) {
+                    println(errorlogs)
+                }
             }
             }
         }
@@ -29,15 +33,24 @@ pipeline {
         stage('Building image') {
             steps {
              script {
+                try {
                 DockerImage = docker.build "${env.image_repo_name}:${env.image_tag}"
+                }
+                catch (Exception errorlogs) {
+                    println(errorlogs)
+                }
              }  
             }       
         }
         stage('Pushing to ECR') {
             steps {
              script {
+                try {
                  sh "docker tag ${env.image_repo_name}:${env.image_tag} ${env.repo_uri}:${env.image_tag}"
                  sh "docker push ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com/${env.image_repo_name}:${env.image_tag}"
+                }
+                catch (Exception errorlogs)
+                println (errorlogs)
              }
             }
         }
