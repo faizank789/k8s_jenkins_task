@@ -21,6 +21,7 @@ pipeline {
                 }
                 catch (Exception errorlogs) {
                     println(errorlogs)
+                    echo "Registry login issue Please check !"
                 }
             }
             }
@@ -38,6 +39,8 @@ pipeline {
                 }
                 catch (Exception errorlogs) {
                     println(errorlogs)
+                    echo "Docker image Building issue please check !"
+                    
                 }
              }  
             }       
@@ -51,6 +54,8 @@ pipeline {
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
+                echo " ECR pushing issue please check !"
+
                 }
              }
             }
