@@ -13,7 +13,6 @@ pipeline {
     }
 
     stages {
-
         stage('Cloning git') {
             steps {
               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '278acc58-8382-432e-95f9-8827baee470d', url: 'git@github.com:faizank789/k8s_jenkins_task.git']]])
@@ -42,12 +41,12 @@ pipeline {
                 }
                 catch (Exception errorlogs) {
                     println(errorlogs)
-                    echo "Docker image Building issue please check !"
-                    
+                    echo "Docker image Building issue please check !" 
                 }
              }  
             }       
         }
+
         stage('Pushing to ECR') {
             steps {
              script {
@@ -63,18 +62,15 @@ pipeline {
              }
             }
         }
+
         stage ('Deploy on k8s cluster') {
             steps {
 //          input "want to deploy on k8s ?"
                 echo "Deployment completed !"
             }
         }
-
-        
     }
 }
-
-
 
 
 
