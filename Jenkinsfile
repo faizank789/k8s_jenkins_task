@@ -13,7 +13,7 @@ pipeline {
     }
 
     stages {
-        
+
         stage('Cloning git') {
             steps {
               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '278acc58-8382-432e-95f9-8827baee470d', url: 'git@github.com:faizank789/k8s_jenkins_task.git']]])
@@ -62,6 +62,7 @@ pipeline {
                 }
              }
             }
+        }
         stage ('Deploy on k8s cluster') {
             steps {
                 input {
@@ -71,7 +72,7 @@ pipeline {
             }
         }
 
-        }
+        
     }
 }
 
