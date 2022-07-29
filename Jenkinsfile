@@ -69,8 +69,13 @@ pipeline {
                     try {
                         sh "kubectl create -f ${env.workspace}/configmap.yaml"
                     }
+                     catch (Exception errorlogs) {
+                println (errorlogs)
+                echo " Deployment issue please check !"
+
                 }
-                } }
                     
+                }
+                } }       
     } 
 }
