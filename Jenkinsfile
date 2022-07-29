@@ -64,17 +64,12 @@ pipeline {
         // }
 
         stage ('Deploying on k8s cluster') {
-            steps {
-                script {
-                    try {
-                        sh "kubectl apply -f ${env.workspace}/configmap.yaml "
-                        sh "kubectl apply -f ${env.workspace}/deployment.yaml "
-                }
-                catch (Exception errorlogs) {
-                println (errorlogs)
-                echo " Issue on Deployment on K8s Please check !"
-                }
+
+            kubernetesDeploy(
+                configs: 'configmap.yaml',
+                kubeconfigID: 'config'
+            )
                 } 
-                 }     }
+                    
     } 
 }
