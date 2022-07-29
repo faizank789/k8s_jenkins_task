@@ -1,21 +1,11 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: sample_kind
 metadata:
-  name: deploy_name
   labels:
-    app: label_info
+    run: sample_label
+  name: sample_label
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: label_info
-  template:
-    metadata:
-      labels:
-        app: label_info
-    spec:
-      containers:
-      - name: Testinga
-        image: sample_image
-        ports:
-        - containerPort: 80
+  containers:
+  - image: sample_image
+    name: apline
+  restartPolicy: Restart_policy
