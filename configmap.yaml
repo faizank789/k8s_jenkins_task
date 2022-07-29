@@ -6,4 +6,4 @@ data:
   sample_label: alpine
 kind: ConfigMap
 metadata:
-  name: deploy_map
+  name: deploy
