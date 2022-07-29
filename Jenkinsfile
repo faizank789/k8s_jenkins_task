@@ -75,6 +75,6 @@ pipeline {
                 echo " Issue on Deployment on K8s Please check !"
                 }
                 } 
-            }
-    }
+                 }     }
+    } 
 }
