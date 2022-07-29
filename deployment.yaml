@@ -23,5 +23,9 @@ spec:
     name: test
   dnsPolicy: ClusterFirst
   restartPolicy: Never
+    - name: envionment_data
+     configMap:
+       name: deploy
+         
 
 
