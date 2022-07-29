@@ -51,8 +51,8 @@ pipeline {
             steps {
              script {
                 try {
-                 sh "docker tag ${env.image_repo_name}:${env.image_tag} ${env.repo_uri}:${env.image_tag}"
-                 sh "docker push ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com/${env.image_repo_name}:${env.image_tag}"
+                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigID: "config")
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigID: "config")
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
