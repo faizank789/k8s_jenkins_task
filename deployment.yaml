@@ -8,14 +8,14 @@ data:
 kind: ConfigMap
 metadata:
   name: deploy
-  
+
 ---
 apiVersion: v1
-kind: sample_kind
+kind: Pod
 metadata:
   labels:
     run: sample_label
-  name: sample_label
+  name: alpine
 spec:
   containers:
   - image: sample_image
