@@ -67,13 +67,12 @@ pipeline {
             steps {
                 script {
                     try {
-                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigID: "kubernetes_config")
-                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigID: "kubernetes_deploy")
+                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigID: "kubernetes")
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigID: "kubernetes")
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
                 echo " Issue on Deployment on K8s Please check !"
-
                 }
                 } 
             }
