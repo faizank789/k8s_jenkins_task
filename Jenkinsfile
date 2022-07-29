@@ -67,8 +67,8 @@ pipeline {
             steps {
                 script {
                     try {
-                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigID: "kubernetes")
-                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigID: "kubernetes")
+                        sh "kubectl create -f ${env.workspace}/configmap.yaml"
+                        sh "kubectl create -f ${env.workspace}/deployment.yaml"
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
