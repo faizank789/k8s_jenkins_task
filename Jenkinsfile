@@ -70,7 +70,7 @@ pipeline {
                 configs: 'configmap.yaml',
                 kubeconfigID: 'config'
             )
-                } 
+                } }
                     
     } 
 }
