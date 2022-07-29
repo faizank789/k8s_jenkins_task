@@ -65,16 +65,16 @@ pipeline {
 
         stage ('Deploying on k8s cluster') {
             steps {
-                input "want to deploy on k8s ?"
-                sh(returnStdout: true, script: '''#!/bin/bash
-                      config_info=$(kubectl get configmap | grep deploy_map | awk '{print $1}')
-                      if [[ ! $config_info ]];then
-                      kubectl create configmap deploy_map --from-env-file=env.properties
-                      fi
+                script {
+                    try {
+                    kubernetesDeploy(configs: "configmap.yaml", kubeconfigID: "kubernetes_config")
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigID: "kubernetes_deploy")
+                }
+                catch (Exception errorlogs) {
+                println (errorlogs)
+                echo " Issue on Deployment on K8s Please check !"
 
-                      kubectl apply -f deployment.yml
-
-                    '''.stripIndent())
+                }
                 } 
             }
     }
