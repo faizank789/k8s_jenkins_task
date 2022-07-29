@@ -57,7 +57,6 @@ pipeline {
                 catch (Exception errorlogs) {
                 println (errorlogs)
                 echo " ECR pushing issue please check !"
-
                 }
              }
             }
