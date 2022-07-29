@@ -64,6 +64,7 @@ pipeline {
         // }
 
         stage ('Deploying on k8s cluster') {
+            steps {
 
             kubernetesDeploy(
                 configs: 'configmap.yaml',
