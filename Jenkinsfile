@@ -62,7 +62,7 @@ pipeline {
              }
             }
         }
-
+        
         stage ('Deploying on k8s cluster') {
             steps {
                 input "want to deploy on k8s ?"
