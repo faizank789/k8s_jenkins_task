@@ -67,8 +67,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "kubectl apply -f ${env.workspace}/configmap.yaml --context admin@demo-cluster.us-east-1.eksctl.io"
-                        sh "kubectl apply -f ${env.workspace}/deployment.yaml --context admin@demo-cluster.us-east-1.eksctl.io"
+                        sh "kubectl apply -f ${env.workspace}/configmap.yaml --token k8s-aws-v1.aHR0cHM6Ly9zdHMudXMtZWFzdC0xLmFtYXpvbmF3cy5jb20vP0FjdGlvbj1HZXRDYWxsZXJJZGVudGl0eSZWZXJzaW9uPTIwMTEtMDYtMTUmWC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBUTVHN1o1UlhPSk1CV0lPRyUyRjIwMjIwNzI5JTJGdXMtZWFzdC0xJTJGc3RzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMjA3MjlUMTEwMjMzWiZYLUFtei1FeHBpcmVzPTYwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCUzQngtazhzLWF3cy1pZCZYLUFtei1TaWduYXR1cmU9MDQ2YjIwNmM0MWY2YWY0NmZhMGU0NDNlNjY5NWM2N2RlNzI5ZGViNDEyMGE3ODc0MzZmNzg1ZjVmMWM4ZTBhOA --server https://9155A2802D4FF46CBD0067368575B739.gr7.us-east-1.eks.amazonaws.com"
+                        sh "kubectl apply -f ${env.workspace}/deployment.yaml --token k8s-aws-v1.aHR0cHM6Ly9zdHMudXMtZWFzdC0xLmFtYXpvbmF3cy5jb20vP0FjdGlvbj1HZXRDYWxsZXJJZGVudGl0eSZWZXJzaW9uPTIwMTEtMDYtMTUmWC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBUTVHN1o1UlhPSk1CV0lPRyUyRjIwMjIwNzI5JTJGdXMtZWFzdC0xJTJGc3RzJTJGYXdzNF9yZXF1ZXN0JlgtQW16LURhdGU9MjAyMjA3MjlUMTEwMjMzWiZYLUFtei1FeHBpcmVzPTYwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCUzQngtazhzLWF3cy1pZCZYLUFtei1TaWduYXR1cmU9MDQ2YjIwNmM0MWY2YWY0NmZhMGU0NDNlNjY5NWM2N2RlNzI5ZGViNDEyMGE3ODc0MzZmNzg1ZjVmMWM4ZTBhOA --server https://9155A2802D4FF46CBD0067368575B739.gr7.us-east-1.eks.amazonaws.com"
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
