@@ -1,13 +1,3 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: deploy
-data:
-  Restart_policy: "Never"
-  sample_image: "062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest"
-  sample_kind: "Pod"
-  sample_label: "alpine"
 
 ---
 apiVersion: v1
@@ -18,11 +8,7 @@ metadata:
   name: test
 spec:
   containers:
-  - image: 
-     valueFrom:
-      configMapKeyRef:
-      name: deploy
-      key: sample_image
+  - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
   dnsPolicy: ClusterFirst
   restartPolicy: Never
  
