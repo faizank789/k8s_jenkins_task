@@ -69,7 +69,7 @@ pipeline {
                 try {
                  sh '''
                  #!/bin/bash
-                 pod_info=$(kubectl get pod test)
+                 pod_info=$(kubectl get pod test -n default)
                  if [[ $pod_info ]]; then
                  kubectl delete pod test
                  fi
