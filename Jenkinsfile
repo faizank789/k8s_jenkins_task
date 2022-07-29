@@ -4,7 +4,7 @@ pipeline {
 //        cron('* * * * *')
 //    }
     environment {
-        aws_account_id="06274638961"
+        aws_account_id="062746389614"
         aws_default_region="us-east-1"
         image_repo_name="demo-test"
         repo_uri="${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com/${env.image_repo_name}"
