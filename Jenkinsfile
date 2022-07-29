@@ -68,7 +68,7 @@ pipeline {
 
             kubernetesDeploy(
                 configs: 'configmap.yaml',
-                kubeconfigID: 'config'
+                kubeconfigid: 'config'
             )
                 } }
                     
