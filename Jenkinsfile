@@ -19,19 +19,19 @@ pipeline {
             }
         }
 
-        stage('logging to ECR') {
-            steps {
-            script {
-                try {
-             sh "aws ecr --region us-east-1 | docker login -u AWS -p ${pass} ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
-                }
-                catch (Exception errorlogs) {
-                    println(errorlogs)
-                    echo "Registry login issue Please check !"
-                }
-            }
-            }
-        }
+        // stage('logging to ECR') {
+        //     steps {
+        //     script {
+        //         try {
+        //      sh "aws ecr --region us-east-1 | docker login -u AWS -p ${pass} ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
+        //         }
+        //         catch (Exception errorlogs) {
+        //             println(errorlogs)
+        //             echo "Registry login issue Please check !"
+        //         }
+        //     }
+        //     }
+        // }
 
         stage('Building image') {
             steps {
