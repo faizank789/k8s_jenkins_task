@@ -69,9 +69,9 @@ pipeline {
                 try {
                  sh '''
                  #!/bin/bash
-                 pod_info=$(kubectl get po test)
+                 pod_info=$(kubectl get pod test)
                  if [[ $pod_info ]]; then
-                 kubectl delete po test
+                 kubectl delete pod test
                  fi
                  '''
                 }
