@@ -4,10 +4,10 @@ kind: ConfigMap
 metadata:
   name: deploy
 data:
-  Restart_policy: Never
-  sample_image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
-  sample_kind: Pod
-  sample_label: alpine
+  Restart_policy: "Never"
+  sample_image: "062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest"
+  sample_kind: "Pod"
+  sample_label: "alpine"
 
 
 ---
