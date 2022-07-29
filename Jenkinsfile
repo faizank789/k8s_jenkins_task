@@ -63,6 +63,26 @@ pipeline {
             }
         }
 
+        stage('check any pod is running') {
+            steps {
+             script {
+                try {
+                 sh '''
+                 #!/bin/bash
+                 pod_info=$(kubectl get po test)
+                 if [[ $pod_info ]]; then
+                 kubectl delete po test
+                 fi
+                 '''
+                }
+                catch (Exception errorlogs) {
+                println (errorlogs)
+                echo " Pod is running please check !"
+                }
+             }
+            }
+        }
+
         stage ('Deploying on k8s cluster') {
             steps {
             kubernetesDeploy(
