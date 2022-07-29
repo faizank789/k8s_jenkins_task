@@ -67,8 +67,8 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "kubectl apply -f ${env.workspace}/configmap.yaml"
-                        sh "kubectl apply -f ${env.workspace}/deployment.yaml"
+                        sh "kubectl apply -f ${env.workspace}/configmap.yaml --context admin@demo-cluster.us-east-1.eksctl.io"
+                        sh "kubectl apply -f ${env.workspace}/deployment.yaml --context admin@demo-cluster.us-east-1.eksctl.io"
                 }
                 catch (Exception errorlogs) {
                 println (errorlogs)
