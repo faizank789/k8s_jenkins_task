@@ -9,7 +9,6 @@ data:
   sample_kind: "Pod"
   sample_label: "alpine"
 
-
 ---
 apiVersion: v1
 kind: Pod
@@ -19,13 +18,14 @@ metadata:
   name: test
 spec:
   containers:
-  - image: sample_image
-    name: test
+  - image: 
+     valueFrom:
+      configMapKeyRef:
+      name: deploy
+      key: sample_image
   dnsPolicy: ClusterFirst
   restartPolicy: Never
-    - name: envionment_data
-    ConfigMap: 
-      name: deploy
+ 
          
 
 
