@@ -12,6 +12,43 @@
 # - apiGroup: rbac.authorization.k8s.io
 #   kind: User
 #   name: system:anonymous
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: jenkins-admin
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: jenkins-admin
+rules:
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["*"]
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: jenkins-admin
+  namespace: devops-tools
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: jenkins-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: jenkins-admin
+subjects:
+- kind: ServiceAccount
+  name: jenkins-admin
+  namespace: devops-tools
 
 ---
 apiVersion: apps/v1
@@ -21,6 +58,7 @@ metadata:
   labels:
     app: k8s-task
   name: k8s-task
+  namespace: jenkins-tools
 spec:
   replicas: 1
   selector:
@@ -35,4 +73,6 @@ spec:
       containers:
       - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
         name: demo-test
+
+
 
