@@ -41,7 +41,7 @@ pipeline {
             }
             }
         }
-        }
+    }
 
         stage('Building image') {
             steps {
@@ -60,7 +60,7 @@ pipeline {
              }  
             }       
         }
-        }
+    }
 
         stage('Pushing to ECR') {
             steps {
@@ -81,7 +81,7 @@ pipeline {
              }
             }
         }
-        }
+    }
 
         stage ('Deploying on k8s cluster') {
             steps {
@@ -95,8 +95,8 @@ pipeline {
                 else {
                     echo "skipping deployment !"
                 }
-        }               
-     }
+                }               
+            }
         }
     }
 } 
