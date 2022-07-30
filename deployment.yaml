@@ -1,78 +1,33 @@
-# ---
-# apiVersion: rbac.authorization.k8s.io/v1
-# kind: ClusterRoleBinding
-# metadata:
-#   creationTimestamp: null
-#   name: cluster-system-anonymons
-# roleRef:
-#   apiGroup: rbac.authorization.k8s.io
-#   kind: ClusterRole
-#   name: cluster-admin
-# subjects:
-# - apiGroup: rbac.authorization.k8s.io
-#   kind: User
-#   name: system:anonymous
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  creationTimestamp: null
-  name: devops-tools
-
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: jenkins-admin
-rules:
-  - apiGroups: [""]
-    resources: ["*"]
-    verbs: ["*"]
-
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: jenkins-admin
-  namespace: devops-tools
-
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: jenkins-admin
+  creationTimestamp: null
+  name: cluster-system-anonymons
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: jenkins-admin
+  name: cluster-admin
 subjects:
-- kind: ServiceAccount
-  name: jenkins-admin
-  namespace: devops-tools
-
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:anonymous
+  
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    app: k8s-task
-  name: k8s-task
-  namespace: devops-tools
+    run: k8s-test
+  name: k8s-test
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: k8s-task
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: k8s-task
-    spec:
-      containers:
-      - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
-        name: demo-test
+  containers:
+  - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
+    name: k8s-test
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+
 
 
 
