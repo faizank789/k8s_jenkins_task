@@ -14,7 +14,7 @@ pipeline {
         logging_ecr=true
         Build_image=true
         pushing_ecr=true
-        deploy_k8s=true
+        deploy_k8s=false
     }
 
     stages {
