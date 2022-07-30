@@ -12,21 +12,30 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   kind: User
   name: system:anonymous
-  
+
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    run: k8s-test
-  name: k8s-test
+    app: k8s-task
+  name: k8s-task
 spec:
-  containers:
-  - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
-    name: k8s-test
-  dnsPolicy: ClusterFirst
-  restartPolicy: Never
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-task
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: k8s-task
+    spec:
+      containers:
+      - image: 062746389614.dkr.ecr.us-east-1.amazonaws.com/demo-test:latest
+        name: demo-test
+
 
 
 
