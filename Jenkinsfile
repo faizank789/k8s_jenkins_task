@@ -95,8 +95,6 @@ pipeline {
                 else {
                     echo "skipping deploymenet !"
                 }
-                
-                 }
-                    
+        }               
     } 
 }
