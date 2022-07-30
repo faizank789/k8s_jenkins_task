@@ -84,15 +84,17 @@ pipeline {
     }
 
         stage ('Deploying on k8s cluster') {
-              input message:'Approve deployment?'
-
+            steps {
+                    if(env.deploy_k8s == 'true') {
             kubernetesDeploy(
                 configs: 'deployment.yaml',
                 kubeconfigId: 'config'
             )
                 }
-    }               
-}
-        
-    
- 
+                else {
+                    echo "skipping deployment !"
+                }                
+            }
+        }
+    }
+} 
