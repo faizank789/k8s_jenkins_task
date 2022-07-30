@@ -96,5 +96,7 @@ pipeline {
                     echo "skipping deploymenet !"
                 }
         }               
-    } 
-}
+     }
+        }
+    }
+} 
