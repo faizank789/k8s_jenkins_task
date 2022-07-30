@@ -10,6 +10,11 @@ pipeline {
         repo_uri="${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com/${env.image_repo_name}"
         image_tag="latest"
         pass=credentials('login_cred')
+
+        logging_ecr=true
+        Build_image=true
+        pushing_ecr=true
+        deploy_k8s=true
     }
 
     stages {
@@ -22,6 +27,7 @@ pipeline {
         stage('logging to ECR') {
             steps {
             script {
+                if(env.logging_ecr == true) {
                 try {
              sh "aws ecr --region us-east-1 | docker login -u AWS -p ${pass} ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
                 }
@@ -30,12 +36,17 @@ pipeline {
                     echo "Registry login issue Please check !"
                 }
             }
+            else {
+                echo "Skipping Logging ECR !"
             }
+            }
+        }
         }
 
         stage('Building image') {
             steps {
              script {
+                if (env.Build_image == true) {
                 try {
                 DockerImage = docker.build "${env.image_repo_name}:${env.image_tag}"
                 }
@@ -43,13 +54,18 @@ pipeline {
                     println(errorlogs)
                     echo "Docker image Building issue please check !" 
                 }
+             }
+             else {
+                echo "Skipping Building image !"
              }  
             }       
+        }
         }
 
         stage('Pushing to ECR') {
             steps {
              script {
+                if(env.pushing_ecr == true) {
                 try {
                  sh "docker tag ${env.image_repo_name}:${env.image_tag} ${env.repo_uri}:${env.image_tag}"
                  sh "docker push ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com/${env.image_repo_name}:${env.image_tag}"
@@ -60,7 +76,11 @@ pipeline {
 
                 }
              }
+             else {
+                echo "Skipping pushing ECR !"
+             }
             }
+        }
         }
 
         stage ('Deploying on k8s cluster') {
