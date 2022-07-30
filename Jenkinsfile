@@ -29,11 +29,7 @@ pipeline {
             script {
                 if(env.logging_ecr == 'true') {
                 try {
-                   // sh "docker logout ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
-//                  sh "aws ecr --region us-east-1 | docker login -u AWS -p ${pass} ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
-                  sh  "aws ecr get-login-password --region ${aws_default_region} | docker login --username AWS --password-stdin ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"
-
-                    
+                  sh  "aws ecr get-login-password --region ${aws_default_region} | docker login --username AWS --password-stdin ${env.aws_account_id}.dkr.ecr.${env.aws_default_region}.amazonaws.com"       
                 }
                 catch (Exception errorlogs) {
                     println(errorlogs)
