@@ -93,7 +93,7 @@ pipeline {
             )
                 }
                 else {
-                    echo "skipping deploymenet !"
+                    echo "skipping deployment !"
                 }
         }               
      }
